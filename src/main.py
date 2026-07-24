@@ -1,17 +1,13 @@
-from simulation import Simulation
-from scenario import Scenario
+from PySide6.QtWidgets import QApplication
+
+from gui.home_window import HomeWindow
+from gui.theme import build_stylesheet
 
 if __name__ == '__main__':
+    app = QApplication([])
+    app.setStyleSheet(build_stylesheet())
 
-    scenario = Scenario()                         # Um cenário é criado, com todas as condições iniciais.
-    world = scenario.create_world()               # Um mundo (cenário, mas a cada instante) é criado pelo cenário e todas as informações vão le ser passadas.
+    home_window = HomeWindow()
+    home_window.show()
 
-    simulation = Simulation(world)                # A simulação recebe o mundo. A forma mais simples de a simulação não daber de nada sobre o programa, só sabe que existe um mundo.
-
-    world.print_state()
-
-    simulation.start()
-
-    simulation.step()
-
-    world.print_state()
+    app.exec()
