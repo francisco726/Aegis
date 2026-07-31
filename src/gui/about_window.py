@@ -1,8 +1,9 @@
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, Qt
 from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel
 
 from gui.components.window_header import WindowHeader
 from gui.components.panel import Panel
+from gui.translations import tr
 
 ABOUT_FIELDS = (
     ("Name", "Aegis"),
@@ -20,19 +21,29 @@ ABOUT_FIELDS = (
     ),
     ("License", "MIT"),
     ("Author", "TODO: add your name"),
-    ("GitHub", "TODO: add repository link"),
+    ("GitHub", "https://github.com/francisco726/Aegis"),
 )
 
 
 class AboutWindow(QMainWindow):
+    """Static project info screen.
+
+    The field labels/values in ABOUT_FIELDS are project facts, not UI
+    chrome, so (unlike the rest of the window) they are left untranslated
+    on purpose — "Aegis", the license, the tech stack, etc. don't change
+    meaning across languages.
+    """
+
     about_window_closed = Signal()
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, settings, parent=None):
+        super().__init__(parent)
+        self.settings = settings
         self._setup_window()
 
     def _setup_window(self):
-        self.setWindowTitle("About")
+        lang = self.settings.language
+        self.setWindowTitle(tr("about_title", lang))
         self.resize(1000, 700)
 
         central = QWidget()
@@ -40,9 +51,9 @@ class AboutWindow(QMainWindow):
 
         root = QVBoxLayout(central)
         root.setContentsMargins(0, 0, 0, 0)
-        root.setSpacing(18)
+        root.setSpacing(16)
 
-        header = WindowHeader("About Aegis")
+        header = WindowHeader(tr("about_title", lang))
         root.addWidget(header)
 
         content = QVBoxLayout()
@@ -63,9 +74,16 @@ class AboutWindow(QMainWindow):
             label.setObjectName("StatusLabel")
             label.setFixedWidth(140)
 
-            value_label = QLabel(value)
+            value_label = QLabel()
             value_label.setObjectName("StatusValue")
             value_label.setWordWrap(True)
+
+            if label_text == "GitHub":
+                value_label.setText(f'<a href="{value}">{value}</a>')
+                value_label.setOpenExternalLinks(True)
+                value_label.setTextInteractionFlags(Qt.TextBrowserInteraction)
+            else:
+                value_label.setText(value)
 
             row.addWidget(label)
             row.addWidget(value_label, stretch=1)

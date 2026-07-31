@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Aegis: optional user-supplied Earth texture and its generated frame cache
+gui/assets/earth_equirectangular.jpg
+gui/assets/earth_frames/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

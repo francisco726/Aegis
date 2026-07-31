@@ -1,0 +1,7 @@
+PySide6>=6.6
+
+# Optional: only needed for the rotating Earth background on the Home
+# screen (gui/components/rotating_earth.py). The app runs fine without
+# them -- it just falls back to the flat grid background.
+numpy>=1.24
+Pillow>=10.0
