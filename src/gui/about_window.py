@@ -20,7 +20,7 @@ ABOUT_FIELDS = (
         "domain design and professional interface engineering.",
     ),
     ("License", "MIT"),
-    ("Author", "TODO: add your name"),
+    ("Author", "Francisco Rodrigues Oliveira"),
     ("GitHub", "https://github.com/francisco726/Aegis"),
 )
 
