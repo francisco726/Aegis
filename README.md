@@ -2,12 +2,6 @@
   <img src="assets/logo/aegis_logo_light.png" width="420">
 </p>
 
-<h1 align="center">AEGIS</h1>
-
-<p align="center">
-Modular Aerospace Simulation Platform
-</p>
-
 <p align="center">
 
 A software engineering project focused on the design and simulation of autonomous aerospace missions through a modular and extensible architecture.
